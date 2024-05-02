@@ -16,9 +16,6 @@
     <NASM Include="bootloader.asm">
       <Filter>Source Files</Filter>
     </NASM>
-    <NASM Include="test.asm">
-      <Filter>Source Files</Filter>
-    </NASM>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="assembler.bat">
@@ -26,6 +23,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="linker.ld" />
+    <None Include="FilesOS\iso\boot\linker.ld" />
   </ItemGroup>
 </Project>

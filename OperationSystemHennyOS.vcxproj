@@ -21,13 +21,12 @@
   <ItemGroup>
     <NASM Include="bootloader.asm" />
     <NASM Include="kernel.asm" />
-    <NASM Include="test.asm" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="assembler.bat" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="linker.ld" />
+    <None Include="FilesOS\iso\boot\linker.ld" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

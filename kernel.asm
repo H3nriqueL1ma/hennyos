@@ -1,12 +1,15 @@
 [BITS 16]
-[ORG 0000h]			;Endereço onde o Kernel está armazenado
+[ORG 0000h]			
 
 jmp OSMain
 
 backWidth db 0
 backHeight db 0
 pagination db 0
+
+;* Messages *******************************************************
 welcome db "Bem-vindo ao HennyOS!", 0
+;******************************************************************
 
 ;############ Operating System Entry ############ 
 OSMain:
@@ -46,6 +49,7 @@ TEXT.SetVideoMode:
 	mov byte[backHeight], 20	;Altura da tela
 	ret
 
+;* Functions ******************************************************
 printString:
 	mov ah, 09h
 	mov bh, [pagination]
@@ -68,6 +72,20 @@ moveCursor:
 	inc dl
 	int 10h
 	ret
+
+printMsg:
+	mov ah, 0x0E
+.start_loop:
+	lodsb
+
+	cmp al, 0
+	je .end_loop
+	int 0x10
+
+	jmp .start_loop
+.end_loop:
+	ret
+;******************************************************************
 
 END:
 	jmp $
