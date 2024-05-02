@@ -1,5 +1,5 @@
 [BITS 16]
-[ORG 7C00h]			;Endereço onde o bootloader está armazenado
+[ORG 0x7c00]			;Endereço onde o bootloader está armazenado
 
 call LoadSystem
 jmp 0800h:0000h		;Passa a execução para o controle do Kernel

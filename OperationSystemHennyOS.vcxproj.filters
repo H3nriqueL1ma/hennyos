@@ -16,10 +16,16 @@
     <NASM Include="bootloader.asm">
       <Filter>Source Files</Filter>
     </NASM>
+    <NASM Include="test.asm">
+      <Filter>Source Files</Filter>
+    </NASM>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="assembler.bat">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="linker.ld" />
   </ItemGroup>
 </Project>

@@ -6,17 +6,27 @@ jmp OSMain
 backWidth db 0
 backHeight db 0
 pagination db 0
+welcome db "Bem-vindo ao HennyOS!", 0
 
 ;############ Operating System Entry ############ 
 OSMain:
 	call configSegment
 	call configStack
 	call TEXT.SetVideoMode
+	jmp ShowString
+
+ShowString:
+	mov dh, 3			;3° linha da tela
+	mov dl, 2			;3° coluna da tela - dl 2+1
+	call moveCursor
+	mov si, welcome
+	call printString
+	jmp END
 
 ;############ Segment Config ############ 
 configSegment:
 	mov ax, es
-	mov dx, ax
+	mov ds, ax
 	ret
 
 ;############ Stack Config ############ 
@@ -27,7 +37,7 @@ configStack:
 	mov sp, 03FEh		;Ponteiro da pilha - Custom
 	ret
 
-############ Video Mode Config ############ 
+;############ Video Mode Config ############ 
 TEXT.SetVideoMode:
 	mov ah, 00h			
 	mov al, 03h			
@@ -35,3 +45,29 @@ TEXT.SetVideoMode:
 	mov byte[backWidth], 80		;Largura da tela
 	mov byte[backHeight], 20	;Altura da tela
 	ret
+
+printString:
+	mov ah, 09h
+	mov bh, [pagination]
+	mov bl, 40
+	mov cx, 1
+	mov al, [si]
+	print:
+		int 10h
+		inc si
+		call moveCursor
+		mov ah, 09h
+		mov al, [si]
+		cmp al, 0
+		jne print
+	ret
+
+moveCursor:
+	mov ah, 02h
+	mov bh, [pagination]
+	inc dl
+	int 10h
+	ret
+
+END:
+	jmp $
