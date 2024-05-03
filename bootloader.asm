@@ -71,15 +71,15 @@ printMsg:
 		ret
 
 ShowString:
-	mov dh, 11					;3° linha da tela
-	mov dl, 1					;3° coluna da tela - dl 2+1
+	mov dh, 0					
+	mov dl, 1					
 	call moveCursor
 	mov si, ok
 	call printString
 	ret
 
 ShowString2:
-	mov dh, 12
+	mov dh, 1
 	mov dl, 1
 	call moveCursor
 	mov si, ok

@@ -21,10 +21,12 @@ OSMain:
 
 ShowString:
 	mov dh, 3					;3° linha da tela
-	mov dl, 2					;3° coluna da tela - dl 2+1
+	mov dl, 28					;3° coluna da tela - dl 2+1
 	call moveCursor
 	mov si, welcome
 	call printString
+	mov ah, 00
+	int 16h
 	jmp END
 
 ;############ Segment Config ############ 
@@ -50,22 +52,11 @@ TEXT.SetVideoMode:
 	mov byte[backHeight], 20	;Altura da tela
 	ret
 
-backColor:
-	mov ah, 06h					;Limpar a tela
-	mov al, 0
-	mov bh, 0001_1111b			;Cor de fundo -> 0001_1111b <- Cor do texto
-	mov ch, 0					;Coluna inicial
-	mov cl, 0					;Linha inicial
-	mov dh, 5					;Quantidade de linhas a terem cor
-	mov dl, 80					;Quantidade de colunas a terem cor
-	int 10h
-	ret
-
 ;* Functions ******************************************************
 printString:
 	mov ah, 09h
 	mov bh, [pagination]
-	mov bl, 0010_1000b
+	mov bl, 1111_0001b
 	mov cx, 1
 	mov al, [si]
 	print:
@@ -84,7 +75,18 @@ moveCursor:
 	inc dl
 	int 10h
 	ret
+
+backColor:
+	mov ah, 06h					;Limpar a tela
+	mov al, 0
+	mov bh, 0001_1111b			;Cor de fundo -> 0001_1111b <- Cor do texto
+	mov ch, 0					;Coluna inicial
+	mov cl, 0					;Linha inicial
+	mov dh, 5					;Quantidade de linhas a terem cor
+	mov dl, 80					;Quantidade de colunas a terem cor
+	int 10h
+	ret
 ;******************************************************************
 
 END:
-	jmp $
+	int 19h
