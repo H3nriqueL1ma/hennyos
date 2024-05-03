@@ -16,11 +16,12 @@ OSMain:
 	call configSegment
 	call configStack
 	call TEXT.SetVideoMode
+	call backColor
 	jmp ShowString
 
 ShowString:
-	mov dh, 3			;3° linha da tela
-	mov dl, 2			;3° coluna da tela - dl 2+1
+	mov dh, 3					;3° linha da tela
+	mov dl, 2					;3° coluna da tela - dl 2+1
 	call moveCursor
 	mov si, welcome
 	call printString
@@ -35,9 +36,9 @@ configSegment:
 ;############ Stack Config ############ 
 configStack:
 	;Endereço da pilha = 7D00h:03FEh
-	mov ax, 7D00h		;Endereço base da pilha - Custom
+	mov ax, 7D00h				;Endereço base da pilha 
 	mov ss, ax			
-	mov sp, 03FEh		;Ponteiro da pilha - Custom
+	mov sp, 03FEh				;Ponteiro da pilha
 	ret
 
 ;############ Video Mode Config ############ 
@@ -49,11 +50,22 @@ TEXT.SetVideoMode:
 	mov byte[backHeight], 20	;Altura da tela
 	ret
 
+backColor:
+	mov ah, 06h					;Limpar a tela
+	mov al, 0
+	mov bh, 0001_1111b			;Cor de fundo -> 0001_1111b <- Cor do texto
+	mov ch, 0					;Coluna inicial
+	mov cl, 0					;Linha inicial
+	mov dh, 5					;Quantidade de linhas a terem cor
+	mov dl, 80					;Quantidade de colunas a terem cor
+	int 10h
+	ret
+
 ;* Functions ******************************************************
 printString:
 	mov ah, 09h
 	mov bh, [pagination]
-	mov bl, 40
+	mov bl, 0010_1000b
 	mov cx, 1
 	mov al, [si]
 	print:
@@ -71,19 +83,6 @@ moveCursor:
 	mov bh, [pagination]
 	inc dl
 	int 10h
-	ret
-
-printMsg:
-	mov ah, 0x0E
-.start_loop:
-	lodsb
-
-	cmp al, 0
-	je .end_loop
-	int 0x10
-
-	jmp .start_loop
-.end_loop:
 	ret
 ;******************************************************************
 
