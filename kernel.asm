@@ -56,7 +56,7 @@ TEXT.SetVideoMode:
 printString:
 	mov ah, 09h
 	mov bh, [pagination]
-	mov bl, 1111_0001b
+	mov bl, 0001_1111b
 	mov cx, 1
 	mov al, [si]
 	print:
