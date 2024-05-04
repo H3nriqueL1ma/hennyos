@@ -26,7 +26,7 @@
     <ClCompile Include="assembler.bat" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FilesOS\iso\boot\linker.ld" />
+    <None Include="Hardware\monitor.inc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

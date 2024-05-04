@@ -23,6 +23,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="FilesOS\iso\boot\linker.ld" />
+    <None Include="Hardware\monitor.inc" />
   </ItemGroup>
 </Project>

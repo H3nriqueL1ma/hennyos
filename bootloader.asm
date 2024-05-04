@@ -119,7 +119,7 @@ inner_loop:
     jnz inner_loop 
 
     inc cx         
-    cmp cx, 1200    
+    cmp cx, 70			;70 -> Máquina Virtual | 1000 -> Máquina Real    
     jne outer_loop 
     ret 
 
@@ -133,7 +133,7 @@ inner_loop1:
     jnz inner_loop1
 
     inc cx         
-    cmp cx, 2000    
+    cmp cx, 100			;100 -> Máquina Virtual | 1200 -> Máquina Real 
     jne outer_loop1 
     ret 
 	
