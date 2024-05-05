@@ -24,5 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Hardware\monitor.inc" />
+    <None Include="Hardware\wmemory.inc" />
+    <None Include="Hardware\disk.inc" />
   </ItemGroup>
 </Project>

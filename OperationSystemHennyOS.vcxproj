@@ -26,7 +26,9 @@
     <ClCompile Include="assembler.bat" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Hardware\disk.inc" />
     <None Include="Hardware\monitor.inc" />
+    <None Include="Hardware\wmemory.inc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

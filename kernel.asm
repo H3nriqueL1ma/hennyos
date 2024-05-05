@@ -3,9 +3,12 @@
 
 jmp OSMain
 
-;* Directives and Inclusions **************************************
-%INCLUDE "Hardware/monitor.inc"
-;******************************************************************
+;* Directives and Inclusions *******************************************
+%include "Hardware/wmemory.inc" 
+%include "Hardware/monitor.inc"
+%include "Hardware/disk.inc"
+
+;***********************************************************************
 
 ;############ Operating System Entry ############ 
 OSMain:
@@ -16,7 +19,7 @@ OSMain:
 	call showString
 	jmp END
 
-;* Kernel Functions ***********************************************
+;* Kernel Functions ****************************************************
 configSegment:
 	mov ax, es
 	mov ds, ax

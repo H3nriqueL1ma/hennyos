@@ -1,28 +1,28 @@
-;----------------------------------------------------
+;-----------------------------------------------------------------------
 ; Monitor Library Routines - HennyOS by Henrique Lima
 ; Version 1.0.0
-;----------------------------------------------------
+;-----------------------------------------------------------------------
 
-%IFNDEF __MONITOR_LIB__
-%DEFINE __MONITOR_LIB__
+%ifndef __MONITOR_LIB__
+%define __MONITOR_LIB__
 
-;* Main Strings ***************************************************
+;* Main Strings ********************************************************
 systemName db "HennyOS", 0
-;******************************************************************
+;***********************************************************************
 
-;* Monitor & Window Configs *************************************************
-count dw 0000h
+;* Monitor Window Configs **********************************************
+count				dw 0000h
 
-backWidth dw 0000h
-backHeight dw 0000h
-backColor db 08h
-pagination db 0
-cursorX db 15
-cursorY db 12
-state db 0
-;******************************************************************
+backWidth			dw 0000h
+backHeight			dw 0000h
+backColor			db 08h
+pagination			db 0
+cursorX				db 15
+cursorY				db 12
+state				db 0
+;***********************************************************************
 
-;* Routine Library ************************************************
+;* Routine Library *****************************************************
 VGA.setVideoMode:
 	mov	ah, 00h			
 	mov al, 13h			
@@ -88,12 +88,9 @@ showString:
 
 delay:
 	pusha
-	mov bx, 0
-	time:
-		inc bx
-		cmp bx, 500		;500 -> Máquina Virtual | 50000 -> Máquina Real
-		jne time
-	popa
-	ret
+	mov ah, 86h
+	mov cx, 0002h
+	mov dx, 49F0h
+	int 15h
 ;******************************************************************
-%ENDIF
+%endif

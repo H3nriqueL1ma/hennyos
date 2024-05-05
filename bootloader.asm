@@ -5,17 +5,17 @@ global boot
 boot: jmp main
 nop
 
-pagination db 0
+pagination				db 0
 
-;* Messages *******************************************************
-bracket1 db "[ ", 0
-bracket2 db " ]", 0
-ok db "OK", 0
-bootloader_started_msg db " Started BOOTLOADER.", 0x0D, 0x0A, 0
-kernel_loaded_msg db " Started KERNEL.", 0x0D, 0x0A, 0
+;* Messages ************************************************************
+bracket1				db "[ ", 0
+bracket2				db " ]", 0
+ok						db "OK", 0
+bootloader_started_msg	db " Started BOOTLOADER.", 0x0D, 0x0A, 0
+kernel_loaded_msg		db " Started KERNEL.", 0x0D, 0x0A, 0
 bootloader_complete_msg db "       BOOTLOADER Complete.", 0x0D, 0x0A, 0
-hennyos_starting_msg db "       Starting HennyOS...", 0x0D, 0x0A, 0
-;******************************************************************
+hennyos_starting_msg	db "       Starting HennyOS...", 0x0D, 0x0A, 0
+;***********************************************************************
 
 ;############ Main Start Boot ############
 main:
@@ -58,7 +58,7 @@ LoadSystem:
 	int 0x13			
 	ret
 
-;* Functions ******************************************************
+;* Functions ***********************************************************
 printMsg:
 	mov ah, 0eh
 	.start_loop:
@@ -162,7 +162,7 @@ kernel_msg_loading:
 	mov si, kernel_loaded_msg
 	call printMsg
 	ret
-;******************************************************************
+;***********************************************************************
 
 ;############ Boot Signature ############
 times 510 - ($-$$) db 0
