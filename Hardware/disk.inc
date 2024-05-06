@@ -7,8 +7,6 @@
 %define __DISK_LIB__
 
 ;* Disk & Memory Configs ***********************************************
-windowAddress	dw 0x500
-
 segmentAddr		dw 0000h
 offsetAddr		dw 0000h
 sector			db 0

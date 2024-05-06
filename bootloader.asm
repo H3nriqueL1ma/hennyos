@@ -41,7 +41,7 @@ main:
 
 	call delayFinal
 
-	jmp 0x8000:0x0000
+	jmp 0800h:0000h
 
 ;############ Load the system ############ 
 LoadSystem:
@@ -50,11 +50,11 @@ LoadSystem:
 	mov ch, 0			;Trilha 0
 	mov cl, 2			;Setor 2 a ser lido - Contém o Kernel
 	mov dh, 0			;Cabeçote 0
-	mov dl, 0x00		;Primeiro disco bootável (Disquete)
+	mov dl, 00h			;Primeiro disco bootável (Disquete)
 
-	mov bx, 0x8000		;Segmento
+	mov bx, 0800h		;Segmento
 	mov es, bx			
-	mov bx, 0x0000		;Offset
+	mov bx, 0000h		;Offset
 	int 0x13			
 	ret
 

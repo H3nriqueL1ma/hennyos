@@ -16,6 +16,9 @@
     <NASM Include="bootloader.asm">
       <Filter>Source Files</Filter>
     </NASM>
+    <NASM Include="window.asm">
+      <Filter>Source Files</Filter>
+    </NASM>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="assembler.bat">

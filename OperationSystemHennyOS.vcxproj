@@ -21,6 +21,7 @@
   <ItemGroup>
     <NASM Include="bootloader.asm" />
     <NASM Include="kernel.asm" />
+    <NASM Include="window.asm" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="assembler.bat" />

@@ -1,5 +1,5 @@
 [BITS 16]
-[ORG 0000h]			
+[ORG 0000h]
 
 jmp OSMain
 
@@ -17,9 +17,20 @@ OSMain:
 	call VGA.setVideoMode
 	call drawBackground
 	call showString
+	call graphicInterface
 	jmp END
 
 ;* Kernel Functions ****************************************************
+graphicInterface:
+	mov byte[sector], 3
+	mov byte[drive], 00h
+	mov byte[numSectors], 1
+	mov word[segmentAddr], 0800h
+	mov word[offsetAddr], 0500h
+	call readDisk
+	call windowAddress
+	ret
+
 configSegment:
 	mov ax, es
 	mov ds, ax

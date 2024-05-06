@@ -8,6 +8,8 @@
 %define __WMEMORY_LIB__
 
 ;* Memory & Window Configs *********************************************
+%define windowAddress		0800h:0500h
+
 %define window_Bar			3000h
 %define window_Width		3001h
 %define window_Height		3003h
